@@ -78,7 +78,12 @@ ui <- dashboardPage(
                menuItem('4grams (NOUN first)', tabName = 'fr_4grams_noun1', icon = icon('table'))
       ),
       menuItem("English", tabName = "english", icon = icon("globe"), startExpanded = TRUE,
-               menuItem('4grams', tabName = 'en_4grams_noun234', icon = icon('table'))
+               menuItem('4grams', tabName = 'en_4grams_rest', icon = icon('table')),
+               menuItem('xx', tabName = 'en_4grams_noun1', icon = icon('table')),
+               menuItem('xx', tabName = 'en_4grams_noun1verb4', icon = icon('table')),
+               menuItem('xx', tabName = 'en_4grams_verb1', icon = icon('table')),
+               menuItem('xx', tabName = 'en_4grams_verb1verb4', icon = icon('table')),
+               menuItem('xx', tabName = 'en_4grams_verb4', icon = icon('table'))
       ),
       menuItem("Download full files", tabName = "download", icon = icon("info-circle"))
       
@@ -166,9 +171,41 @@ ui <- dashboardPage(
       
       
       # Second tab content
-      tabItem(tabName = "en_4grams_noun234",
-              h2('English 4grams (not starting with _NOUN_ tag)'),
-              h3('To come')
+      
+      tabItem(tabName = "en_4grams_rest",
+              
+              
+              # Panel titles
+              fluidRow(h3('English 4grams (not starting with _NOUN_ tag)')),
+              fluidRow(h4('Select the amount of data to read, and press Read button')),
+              tags$style(type='text/css', "h2 { margin-left: 10px}"),
+              tags$style(type='text/css', "h4 { margin-left: 15px; color: #DC143C;}"),
+              
+              # Selection criteria, variable filter, read button
+              fluidRow(
+                
+                # number of lines
+                column(3, radioButtons("en_4grams_rest_rbrow", label = "Number of phrases", 
+                                       choices = list("10,000" = 10000,"100,000" = 100000,"1,000,000" = 1000000,"full" = 1), selected = 10000,width = "100%", inline = FALSE)),
+                
+                # number of columns
+                column(3, radioButtons("en_4grams_rest_rbcol", label = "Number of variables", 
+                                       choices = list("3" = 3,"All" = 23), selected = 3,width = "100%", inline = FALSE)),
+                
+                # filter columns
+                column(5, pickerInput("en_4grams_rest_selectinput","Filter variables (click in the box)", choices=NULL, options = list('actions-box' = TRUE), multiple = T))
+              ),
+              
+              fluidRow(column(9, actionButton("en_4grams_rest_button", "Apply selection/filter criteria and Read data")),
+                       column(2, actionButton("en_4grams_rest_resetbutton", "Reset"))),
+              
+              tags$style(type='text/css', "#en_4grams_rest_button { width:100%; margin-bottom: 25px; color: #fff; background-color: #337ab7; border-color: #2e6da4}"),
+              tags$style(type='text/css', "#en_4grams_rest_resetbutton { width:100%; margin-bottom: 25px; color: #fff; background-color: #f44336}"),
+              
+              hr(), tags$style(HTML("hr {border-top: 1px solid #000000;}")),
+              
+              fluidRow(column(12, DT::dataTableOutput("en_4grams_rest_dt")))
+              
       ),
       
       tabItem(tabName = "download",
@@ -240,8 +277,28 @@ server <- function(input, output, session) {
       # update variable selection
       updatePickerInput(session, "fr_4grams_noun1_selectinput", choices = names(d))
       
-    } else if (input$sidebarmenu == 'en_4grams_noun234'){
-      # TODO
+    } else if (input$sidebarmenu == 'en_4grams_rest'){
+      
+      # read file and assign data
+      read_assign("ENG", "ENG_4gram_rest", 10000, 3)
+      
+      # permute gram
+      d <- data[sample(nrow(data)), , drop=FALSE]
+      
+      # output data table
+      output$fr_4grams_noun234_dt <- DT::renderDataTable({ d }, filter="top", selection="multiple", escape=FALSE,
+                                                         extensions = c("Buttons"), 
+                                                         options = list(dom = 'Bfrtip', 
+                                                                        buttons = c('copy', 'csv', 'excel', 'pdf', 'print','pageLength'), 
+                                                                        lengthMenu = list(c(50, 100, 500, 1000, 5000), c('50', '100', '500', '1000', '5000')), pageLength = 50) ) # render table
+      
+      #update radio buttons to the initial state
+      updateRadioButtons(session, "en_4grams_rest_rbrow", selected = "10000")
+      updateRadioButtons(session, "en_4grams_rest_rbcol", selected = "3")
+      
+      # update variable selection
+      updatePickerInput(session, "en_4grams_rest_selectinput", choices = names(d))
+      
     }
     
     
@@ -367,6 +424,66 @@ server <- function(input, output, session) {
   })
   
 
+  ####################
+  ### en_4grams_rest
+  ####################
+  
+  # click on fr_4grams_noun234_button
+  observeEvent(input$en_4grams_rest_button, {
+    
+    # read file and assign data
+    read_assign("ENG", "ENG_4gram_rest", input$en_4grams_rest_rbrow, input$en_4grams_rest_rbcol)
+    
+    # column selection
+    columns = names(data)
+    if (!is.null(input$en_4grams_rest_selectinput)) {
+      columns = input$en_4grams_rest_selectinput
+    }
+    data <- data[, columns, drop=FALSE] 
+    
+    # permute gram
+    d <- data[sample(nrow(data)),, drop=FALSE]
+    
+    # output data table
+    #output$fr_4grams_noun234_dt <- DT::renderDataTable({ d }, options = list(pageLength = 50) )
+    output$en_4grams_rest_dt <- DT::renderDataTable({ d },  
+                                                       extensions = c("Buttons"), 
+                                                       options = list(dom = 'Bfrtip', 
+                                                                      buttons = c('copy', 'csv', 'excel', 'pdf', 'print','pageLength'), 
+                                                                      lengthMenu = list(c(50, 100, 500, 1000, 5000), c('50', '100', '500', '1000', '5000')), pageLength = 50) ) # render table
+    
+    # update variable selection
+    updatePickerInput(session, "en_4grams_rest_selectinput", choices = names(d))
+    
+  })
+  
+  # click on fr_4grams_noun234_button
+  observeEvent(input$en_4grams_rest_resetbutton, {
+    
+    # read file and assign data
+    read_assign("ENG", "ENG_4gram_rest", 10000, 3)
+    
+    # permute gram
+    d <- data[sample(nrow(data)), , drop=FALSE]
+    
+    # output data table
+    #output$fr_4grams_noun234_dt <- DT::renderDataTable({ d }, options = list(pageLength = 50) ) # render table
+    output$en_4grams_rest_dt <- DT::renderDataTable({ d },  
+                                                       extensions = c("Buttons"), 
+                                                       options = list(dom = 'Bfrtip', 
+                                                                      buttons = c('copy', 'csv', 'excel', 'pdf', 'print','pageLength'), 
+                                                                      lengthMenu = list(c(50, 100, 500, 1000, 5000), c('50', '100', '500', '1000', '5000')), pageLength = 50) ) # render table
+    
+    #update radio buttons to the initial state
+    updateRadioButtons(session, "en_4grams_rest_rbrow", selected = "10000")
+    updateRadioButtons(session, "en_4grams_rest_rbcol", selected = "3")
+    
+    # update variable selection
+    updatePickerInput(session, "en_4grams_rest_selectinput", choices = names(d))
+    
+  })
+  
+  
   
   ####################
   ### download
@@ -380,6 +497,11 @@ server <- function(input, output, session) {
   output$fr_4grams_noun1_download <- downloadHandler( 
     filename = "fr_4grams_noun1.csv.gz",
     content = function(file) { file.copy(path("data", "FRA", "FRA_4gram_noun1.csv", ext="gz"), file) },
+    contentType = "application/zip")
+  
+  output$en_4grams_rest_download <- downloadHandler( 
+    filename = "en_4grams_rest.csv.gz",
+    content = function(file) { file.copy(path("data", "ENG", "ENG_4gram_rest.csv", ext="gz"), file) },
     contentType = "application/zip")
   
   
