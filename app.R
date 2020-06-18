@@ -215,7 +215,8 @@ ui <- dashboardPage(
               fluidRow(downloadButton("fr_4grams_noun234_download", "Download French 4grams, _NOUN_ tag not in the first position ")),
               fluidRow(downloadButton("fr_4grams_noun1_download", "Download French 4grams, _NOUN_ tag in the first position ")),
               hr(),
-              h4("English datafiles")
+              h4("English datafiles"),
+              fluidRow(downloadButton("en_4grams_rest_download", "Download English 4grams, _NOUN_ tag not in the first position "))
       )
       
       
@@ -286,7 +287,7 @@ server <- function(input, output, session) {
       d <- data[sample(nrow(data)), , drop=FALSE]
       
       # output data table
-      output$fr_4grams_noun234_dt <- DT::renderDataTable({ d }, filter="top", selection="multiple", escape=FALSE,
+      output$en_4grams_rest_dt <- DT::renderDataTable({ d }, filter="top", selection="multiple", escape=FALSE,
                                                          extensions = c("Buttons"), 
                                                          options = list(dom = 'Bfrtip', 
                                                                         buttons = c('copy', 'csv', 'excel', 'pdf', 'print','pageLength'), 
@@ -330,7 +331,7 @@ server <- function(input, output, session) {
     #output$fr_4grams_noun234_dt <- DT::renderDataTable({ d }, options = list(pageLength = 50) )
     output$fr_4grams_noun234_dt <- DT::renderDataTable({ d },  
                                                        extensions = c("Buttons"), 
-                                                       options = list(dom = 'Bfrtip', 
+                                                       options = list(dom = 'Bfrtip', scrollX = TRUE,
                                                                       buttons = c('copy', 'csv', 'excel', 'pdf', 'print','pageLength'), 
                                                                       lengthMenu = list(c(50, 100, 500, 1000, 5000), c('50', '100', '500', '1000', '5000')), pageLength = 50) ) # render table
     
@@ -351,7 +352,7 @@ server <- function(input, output, session) {
     # output data table
     #output$fr_4grams_noun234_dt <- DT::renderDataTable({ d }, options = list(pageLength = 50) ) # render table
     output$fr_4grams_noun234_dt <- DT::renderDataTable({ d },  
-                                                       extensions = c("Buttons"), 
+                                                       extensions = c("Buttons"),  scrollX = TRUE,
                                                        options = list(dom = 'Bfrtip', 
                                                                       buttons = c('copy', 'csv', 'excel', 'pdf', 'print','pageLength'), 
                                                                       lengthMenu = list(c(50, 100, 500, 1000, 5000), c('50', '100', '500', '1000', '5000')), pageLength = 50) ) # render table
@@ -389,7 +390,7 @@ server <- function(input, output, session) {
     # output data table
     output$fr_4grams_noun1_dt <- DT::renderDataTable({ d },  
                                                      extensions = c("Buttons"), 
-                                                     options = list(dom = 'Bfrtip', 
+                                                     options = list(dom = 'Bfrtip',  scrollX = TRUE,
                                                                     buttons = c('copy', 'csv', 'excel', 'pdf', 'print','pageLength'), 
                                                                     lengthMenu = list(c(50, 100, 500, 1000, 5000), c('50', '100', '500', '1000', '5000')), pageLength = 50) ) # render table
     
@@ -410,7 +411,7 @@ server <- function(input, output, session) {
     # output data table
     output$fr_4grams_noun1_dt <- DT::renderDataTable({ d },  
                                                      extensions = c("Buttons"), 
-                                                     options = list(dom = 'Bfrtip', 
+                                                     options = list(dom = 'Bfrtip',  scrollX = TRUE,
                                                                     buttons = c('copy', 'csv', 'excel', 'pdf', 'print','pageLength'), 
                                                                     lengthMenu = list(c(50, 100, 500, 1000, 5000), c('50', '100', '500', '1000', '5000')), pageLength = 50) ) # render table
     
@@ -448,7 +449,7 @@ server <- function(input, output, session) {
     #output$fr_4grams_noun234_dt <- DT::renderDataTable({ d }, options = list(pageLength = 50) )
     output$en_4grams_rest_dt <- DT::renderDataTable({ d },  
                                                        extensions = c("Buttons"), 
-                                                       options = list(dom = 'Bfrtip', 
+                                                       options = list(dom = 'Bfrtip',  scrollX = TRUE,
                                                                       buttons = c('copy', 'csv', 'excel', 'pdf', 'print','pageLength'), 
                                                                       lengthMenu = list(c(50, 100, 500, 1000, 5000), c('50', '100', '500', '1000', '5000')), pageLength = 50) ) # render table
     
@@ -470,7 +471,7 @@ server <- function(input, output, session) {
     #output$fr_4grams_noun234_dt <- DT::renderDataTable({ d }, options = list(pageLength = 50) ) # render table
     output$en_4grams_rest_dt <- DT::renderDataTable({ d },  
                                                        extensions = c("Buttons"), 
-                                                       options = list(dom = 'Bfrtip', 
+                                                       options = list(dom = 'Bfrtip',  scrollX = TRUE,
                                                                       buttons = c('copy', 'csv', 'excel', 'pdf', 'print','pageLength'), 
                                                                       lengthMenu = list(c(50, 100, 500, 1000, 5000), c('50', '100', '500', '1000', '5000')), pageLength = 50) ) # render table
     
