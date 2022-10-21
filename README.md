@@ -80,3 +80,9 @@ The abstract is:
 
 Application is live at https://analytics.huma-num.fr/popr-ngram/
 
+### Is it possible the get the frequencies for another language?
+
+Simple answer is yes, with more difficulties for some laguages. It took ages to get French and English forms even if we relied entirely on the Google N-gram database.
+
+I express my gratitude to Google and the people that push forward the N-Gram project.
+
