@@ -2,6 +2,13 @@
 
 # library
 library(tidyverse) # a package of libraries, useful for stringr
+library(fs) # file operations independant from operating system
+
+
+#----------
+# download a file (here ENG2_50k.csv.gz) to working directory
+download.file("https://zenodo.org/record/7214223/files/ENG2_50k.csv.gz?download=1",
+              path(getwd(), "ENG2_50k.csv.gz"))
 
 #----------
 # read a file
