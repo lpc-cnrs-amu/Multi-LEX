@@ -1,7 +1,5 @@
 ## **Multi-LEX**: a database of multi-word frequencies for French and English<br>
-<br>
-Marjorie ARMANDO, Jonathan GRAINGER, Stephane DUFAU<br>
-Laboratoire de psychologie cognitive (UMR7290), CNRS & Aix-Marseille University, France<br>
+
 
 
 ### Where can I download the files?
@@ -86,3 +84,10 @@ Simple answer is yes, with more difficulties for some laguages. It took ages to 
 
 I express my gratitude to Google and the people that push forward the N-Gram project.
 
+
+```
+Marjorie ARMANDO, Jonathan GRAINGER, Stephane DUFAU
+Laboratoire de psychologie cognitive (UMR7290), CNRS & Aix-Marseille University, France
+
+Published in Behavior, Research, Methods
+```
