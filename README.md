@@ -1,6 +1,7 @@
 ## **Multi-LEX**: a database of multi-word frequencies for French and English<br>
 
-
+## Link to N-word-frequency
+This repository is the front office (display and filter) of the following back office (data creation)repository https://github.com/lpc-cnrs-amu/N-word-frequency.
 
 ### Where can I download the files?
 English files are available here: https://zenodo.org/record/7214223 (DOI 10.5281/zenodo.7214223)<br>
