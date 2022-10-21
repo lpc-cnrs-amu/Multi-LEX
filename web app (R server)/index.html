@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Multi-LEX</title>
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body>
+  <div class="jumbotron jumbotron-fluid text-center">
+    <h1 class="display-4"><strong>Multi-LEX</strong>:<br>a database of multi-word frequencies<br>for French and English</h1>
+    <p class="lead">Load a ressource, search for word sequences and download your selection. Or download whole files.</p>
+    <hr class="my-4">
+    <p>Millions of word sequences extracted from the Google NGRAM database, in French and English.
+      <br>2-, 3-, 4- and 5-word sequences
+      <br>With corpus standardized frequencies.
+    </p>
+    <p class="lead">
+      <a class="btn btn-primary btn-lg" href="#en-section" role="button">English apps</a>
+      <a class="btn btn-primary btn-lg" href="#fr-section" role="button">French apps</a>
+      <a class="btn btn-primary btn-lg" href="#about-section" role="button">About</a>
+    </p>
+  </div>
+  <div class="container">
+    <hr>
+    <br>
+    <h2 id="fr-section">French sequences</h2>
+    <div id="shinyapp-fr" class="row">
+    </div>
+    <br>
+    <hr>
+    <br>
+    <h2 id="en-section">English sequences</h2>
+    <div id="shinyapp-en" class="row">
+    </div>
+    <br>
+    <br>
+    <hr>
+    <hr>
+    <br>
+    <h2 id="about-section">About</h2>
+    <div id="about-id" class="row">
+      <div class="text-center col-lg-6 offset-lg-3">
+        <h4>Multi-LEX: n-gram lexicons of French and English</h4>
+        <p>
+          <a href="https://fr.linkedin.com/in/marjorie-armando-97a604173" >Marjorie Armando</a>,
+          <a href="https://sites.google.com/site/ijonathangrainger/" >Jonathan Grainger</a>,
+          <a href="https://cv.archives-ouvertes.fr/stephane-dufau" >Stephane Dufau</a>,
+        </p>
+        <br>
+        <br>
+        <p><strong>How to cite:</strong></p>
+        <p>Armando, M., Grainger, J. & Dufau, S.(2022). Multi-LEX: a database of multi-word frequencies for French and English. <i>Beahavior Research Methods</i></p>
+        <br>
+        <br>
+        <p>Copyright &copy; 2022 &middot; All Rights Reserved &middot;
+          <a href="https://www.cnrs.fr" >CNRS</a>,
+          <a href="https://www.univ-amu.fr" >Aix-Marseille University</a>
+        </p>
+      </div>
+    </div>
+    <br>
+    <hr>
+    <br>
+    <hr>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+  <script src="js/appcard.js"></script>
+</body>
+</html>
