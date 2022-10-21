@@ -31,10 +31,46 @@ Code to manipulate the files, both with standard R code and a Shiny app.
 The app is visible at:
 https://analytics.huma-num.fr/popr-ngram/
 
+### Example of R code
+```
+#----------
+# read a file
+filename <- "ENG2_50k.csv.gz"
+data <- read.delim(filename)
 
-The files are associated with a scientific article. The abstract is:
+#----------
+# search for "as" in GRAM1
+gram_tmp <- "as"
+var_tmp <- "GRAM1"
+ind_in1 <-  str_which(data[,var_tmp], gram_tmp, negate = FALSE) # index
+data_selected1 <- data[ind_in1,] # results
+head(data_selected1)
 
-Written word frequency is a key variable used in many psycholinguistic studies and is central in explaining visual word recognition. Indeed, methodological advances on single word frequency estimates have helped to uncover novel language-related cognitive processes, fostering new ideas and studies. In an attempt to support and promote research on a related emerging topic, visual multi-word recognition, we extracted from the exhaustive Google Ngram datasets a selection of millions of multi-word sequences and computed their associated frequency estimate. Such sequences are presented with Part-of-Speech information for each individual word. An online behavioral investigation making use of the French 4-gram lexicon in a grammatical decision task was carried out. The results show an item-level frequency effect of word sequences. Moreover, the proposed datasets were found useful during the stimulus selection phase, allowing more precise control of the multi-word characteristics.
+#----------
+# search far "verb" and "adv" in POS1 and POS2
+ind_in2 <-  intersect(
+  str_which(data$POS1, "verb", negate = FALSE),
+  str_which(data$POS2, "adv", negate = FALSE)
+  )# index
+data_selected2 <- data[ind_in2,] # results
+head(data_selected2)
+
+#----------
+# filter by ZFI
+# plot an histogram
+hist(data$ZFI, 1000)
+# select forms on ZFI, from 4 to 5
+ind_in3 <- data$ZFI < 5 & data$ZFI > 4 # index
+data_selected3 <- data[ind_in3,] # results
+hist(data_selected3$ZFI, 100) # plot histogram
+```
+
+### Where  can I find more info?
+
+The files are associated with a scientific article. 
+The abstract is:
+
+*Written word frequency is a key variable used in many psycholinguistic studies and is central in explaining visual word recognition. Indeed, methodological advances on single word frequency estimates have helped to uncover novel language-related cognitive processes, fostering new ideas and studies. In an attempt to support and promote research on a related emerging topic, visual multi-word recognition, we extracted from the exhaustive Google Ngram datasets a selection of millions of multi-word sequences and computed their associated frequency estimate. Such sequences are presented with Part-of-Speech information for each individual word. An online behavioral investigation making use of the French 4-gram lexicon in a grammatical decision task was carried out. The results show an item-level frequency effect of word sequences. Moreover, the proposed datasets were found useful during the stimulus selection phase, allowing more precise control of the multi-word characteristics.*
 
 ---
 
