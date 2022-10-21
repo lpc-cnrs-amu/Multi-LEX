@@ -8,7 +8,7 @@ Laboratoire de psychologie cognitive (UMR7290), CNRS & Aix-Marseille University,
 English files are available here: https://zenodo.org/record/7214223 (DOI 10.5281/zenodo.7214223)<br>
 French files: https://zenodo.org/record/7214248 (DOI 10.5281/zenodo.7214248)
 
-The size of the files range 10MB to 300MB. 
+The size of the files ranges from 10MB to 300MB. 
 
 
 ### What's in it?
