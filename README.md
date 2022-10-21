@@ -8,9 +8,13 @@ Laboratoire de psychologie cognitive (UMR7290), CNRS & Aix-Marseille University,
 English files are available here: https://zenodo.org/record/7214223 (DOI 10.5281/zenodo.7214223)<br>
 French files: https://zenodo.org/record/7214248 (DOI 10.5281/zenodo.7214248)
 
+The size of the files range 10MB to 300MB. 
+
 
 ### What's in it?
 **Frequencies**. Actually, frequencies of pairs of words like *grey computer* found in millions of books (sourced from Google Books), but also triplets like *a nice picture* up to 5-word sequences like *the lamp on the desk*. Those are called N-grams (here N goes from 2 to 5).
+
+For each size and each laguage, say French 3-GRAMS, the smaller file contains the most frequent NGRAMS (50,000 forms), the middle file contains 1 million NGRAMS including the 50k most frequent, and the bigger file a few millions (nearly all available NGRAMS.
 
 English and French files are composed of this kind of information:
 
