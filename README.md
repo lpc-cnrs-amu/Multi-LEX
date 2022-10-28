@@ -1,14 +1,13 @@
 ## **Multi-LEX**: a database of multi-word frequencies for French and English<br>
-<br>
-Marjorie ARMANDO, Jonathan GRAINGER, Stephane DUFAU<br>
-Laboratoire de psychologie cognitive (UMR7290), CNRS & Aix-Marseille University, France<br>
 
+## Link to N-word-frequency
+This repository is the front office (display and filter) of the following back office (data creation)repository https://github.com/lpc-cnrs-amu/N-word-frequency.
 
 ### Where can I download the files?
 English files are available here: https://zenodo.org/record/7214223 (DOI 10.5281/zenodo.7214223)<br>
 French files: https://zenodo.org/record/7214248 (DOI 10.5281/zenodo.7214248)
 
-The size of the files range 10MB to 300MB. 
+The size of the files ranges from 10MB to 300MB. 
 
 
 ### What's in it?
@@ -86,3 +85,10 @@ Simple answer is yes, with more difficulties for some laguages. It took ages to 
 
 I express my gratitude to Google and the people that push forward the N-Gram project.
 
+
+```
+Marjorie ARMANDO, Jonathan GRAINGER, Stephane DUFAU
+Laboratoire de psychologie cognitive (UMR7290), CNRS & Aix-Marseille University, France
+
+Published in Behavior, Research, Methods
+```
